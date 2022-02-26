@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_API_KEY } from '@env';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import colors from '@constants/colors';
-import LocationSearchRow from '@components/request/locationSearchRow';
+import { colors } from '@constants';
+import { LocationSearchRow } from '@components';
 
 navigator.geolocation = require('react-native-geolocation-service');
 
@@ -13,14 +13,16 @@ type GooglePlacesInputProps = {
 	placeholder: string;
 	variant?: 'default' | 'secondary';
 	setLocationDetails: Dispatch<SetStateAction<null | {}>>;
+	autoFocus?: boolean;
 };
 
 export default function GooglePlacesInput({
 	placeholder,
 	variant = 'default',
 	setLocationDetails,
+	autoFocus = false,
 }: GooglePlacesInputProps) {
-	const mapRef = useRef<any>();
+	const mapRef = useRef<any>(null);
 
 	const homePlace = {
 		description: 'Home',
@@ -30,6 +32,10 @@ export default function GooglePlacesInput({
 		description: 'Work',
 		geometry: { location: { lat: 48.8496818, lng: 2.2940881 } },
 	};
+
+	useEffect(() => {
+		autoFocus && mapRef.current?.focus();
+	}, [autoFocus]);
 
 	return (
 		<GooglePlacesAutocomplete
@@ -51,7 +57,6 @@ export default function GooglePlacesInput({
 			}}
 			onPress={(data, details = null) => {
 				// 'details' is provided when fetchDetails = true
-				// console.log(details?.geometry.location);
 				setLocationDetails({
 					latitude: details?.geometry.location.lat,
 					longitude: details?.geometry.location.lng,

@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import {
 	Image,
 	StatusBar,
@@ -6,7 +7,6 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
 import {
 	NavigationProp,
 	ParamListBase,
@@ -26,7 +26,7 @@ export default function Request() {
 
 	useEffect(() => {
 		if (userPickup && userDestination) {
-			navigation.navigate('Destination', {
+			navigation.navigate('Confirm Request', {
 				userPickup,
 				userDestination,
 			});
@@ -38,7 +38,6 @@ export default function Request() {
 	return (
 		<View style={styles.container}>
 			<StatusBar backgroundColor={colors.black} />
-			{/* <RequestScreenMap /> */}
 
 			<View style={styles.topContainer}>
 				<View style={styles.header}>
@@ -73,6 +72,7 @@ export default function Request() {
 						<GooglePlacesInput
 							placeholder="Enter pick-up location"
 							setLocationDetails={setUserPickup}
+							autoFocus
 						/>
 
 						<GooglePlacesInput

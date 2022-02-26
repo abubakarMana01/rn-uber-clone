@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 
-import RootNavigator from '@navs/rootNavigator';
-import AppProvider from '@contexts/appProvider';
+import { RootNavigator } from '@navs';
+import { AppProvider } from '@contexts';
 
 const App = () => {
 	return (

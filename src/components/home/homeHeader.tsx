@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import {
 	NavigationProp,
 	ParamListBase,
@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/native';
 import Feather from 'react-native-vector-icons/Feather';
 
-import colors from '@constants/colors';
+import { colors } from '@constants';
 
 export default function HomeHeader() {
 	const navigation = useNavigation<NavigationProp<ParamListBase>>();
@@ -27,12 +27,12 @@ export default function HomeHeader() {
 				{'Read a book. Take a nap. Stare out of the \nwindow'}
 			</Text>
 
-			<TouchableOpacity
+			<Pressable
 				style={styles.headerButton}
 				onPress={() => navigation.navigate('Request')}
 			>
 				<Text style={styles.headerButtonText}>Ride with Uber</Text>
-			</TouchableOpacity>
+			</Pressable>
 
 			<View style={styles.headerBottomImage}>
 				<Image source={require('@assets/uberCar.png')} resizeMode="contain" />

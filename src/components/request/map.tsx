@@ -5,7 +5,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_API_KEY } from '@env';
 
 import { mapStyle } from '@assets/mapStyle';
-import colors from '@constants/colors';
+import { colors } from '@constants';
 
 type MapProps = {
 	origins: {

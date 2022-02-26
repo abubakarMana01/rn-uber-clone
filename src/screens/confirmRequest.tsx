@@ -26,7 +26,7 @@ import { RequestScreenMap } from '@components';
 
 import { carTypeData } from '@assets/data';
 
-export default function Destination() {
+export default function ConfirmRequest() {
 	const navigation = useNavigation<NavigationProp<ParamListBase>>();
 	const route = useRoute<any>();
 
@@ -34,11 +34,9 @@ export default function Destination() {
 
 	const bottomSheetRef = useRef<BottomSheet>(null);
 
-	const snapPoints = useMemo(() => [400, '80%'], []);
+	const snapPoints = useMemo(() => [400, '90%'], []);
 
-	const handleSheetChanges = useCallback((index: number) => {
-		console.log('handleSheetChanges', index);
-	}, []);
+	const handleSheetChanges = useCallback(() => {}, []);
 
 	const sections = useMemo(
 		() =>
